@@ -1,8 +1,10 @@
+// 82eb971347b9a2ca2847f59a68b27d6c
 // a library to wrap and simplify api calls
 import apisauce from 'apisauce'
 
+const token = '82eb971347b9a2ca2847f59a68b27d6c'
 // our "constructor"
-const create = (baseURL = 'https://api.github.com/') => {
+const create = (baseURL = 'https://api.themoviedb.org/3/') => {
   // ------
   // STEP 1
   // ------
@@ -37,6 +39,8 @@ const create = (baseURL = 'https://api.github.com/') => {
   const getRoot = () => api.get('')
   const getRate = () => api.get('rate_limit')
   const getUser = (username) => api.get('search/users', {q: username})
+  const getMovieList = () => api.get(`movie/now_playing?api_key=${token}&language=en-US&page=1`)
+  const getGenreList = () => api.get(`genre/movie/list?language=en-US&api_key=${token}`)
 
   // ------
   // STEP 3
@@ -54,7 +58,9 @@ const create = (baseURL = 'https://api.github.com/') => {
     // a list of the API functions from step 2
     getRoot,
     getRate,
-    getUser
+    getUser,
+    getMovieList,
+    getGenreList
   }
 }
 
